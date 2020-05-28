@@ -8,6 +8,7 @@ import {
   TextInput,
 } from "react-native";
 import Home from "../HomeComponent/Home";
+import Axios from "axios";
 
 export default class Login extends Component {
   constructor(props) {
@@ -17,10 +18,17 @@ export default class Login extends Component {
         {
           id: "tlsdltkr2530",
           pw: "tlsdltkr44",
+          email: "tlsdltkr2530@gmail.com",
           nick: "신선한 새싹",
           phone: "01051412531",
         },
-        { id: "dudwo4448", pw: "spawn12358", nick: "CK", phone: "01094741871" },
+        {
+          id: "dudwo4448",
+          pw: "spawn12358",
+          email: "a01094741871@gmail.com",
+          nick: "SulJayK",
+          phone: "01094741871",
+        },
       ],
       input_id: null,
       password: null,
@@ -35,6 +43,17 @@ export default class Login extends Component {
       (user) => input_id === user.id && password === user.pw
     );
     if (c_user !== undefined) {
+      fetch("http://192.168.0.4:8000/account/sign-in/", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: input_id,
+          pw: password,
+        }),
+      }).then((res) => console.log(res));
       this.setState({ cur: true, c_user: c_user });
     } else {
       alert("아이디나 비밀번호가 다릅니다");

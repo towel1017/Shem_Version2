@@ -23,10 +23,10 @@ function MyStack() {
   );
 }
 
-export default function App() {
+export default function App(props) {
   return (
     <NavigationContainer>
-      <MyStack />
+      <MyStack props={props} />
     </NavigationContainer>
   );
 }

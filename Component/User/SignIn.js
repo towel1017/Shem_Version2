@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import Axios from "axios";
 
 export default class Signin extends Component {
   constructor(props) {
@@ -15,23 +16,37 @@ export default class Signin extends Component {
       id: null,
       pw: null,
       re_pw: null,
+      email: null,
       nick: null,
       phone: null,
     };
   }
   handleUserPlus = () => {
-    const { id, pw, nick, phone } = this.state;
+    const { id, pw, nick, email, phone } = this.state;
     if (this.state.pw === this.state.re_pw) {
-      this.userPlus(id, pw, nick, phone);
+      this.userPlus(id, pw, nick, email, phone);
     } else {
       alert("비밀번호가 다릅니다");
     }
   };
-  userPlus = (id, pw, nick, phone) => () =>
-    this.props.plusUser(id, pw, nick, phone);
+  userPlus = (id, pw, nick, email, phone) => {
+    fetch("http://192.168.0.4:8000/account/sign-up/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+        pw: pw,
+        nickname: nick,
+        email: email,
+        phonenum: phone,
+      }),
+    }).then((res) => console.log(res));
+  };
   render() {
-    const { id, pw, re_pw, nick, phone } = this.state;
-    const { handleChange } = this;
+    const { id, pw, re_pw, nick, phone, email } = this.state;
     return (
       <View style={styles.container}>
         <Image
@@ -89,7 +104,24 @@ export default class Signin extends Component {
           textAlign="center"
           maxLength={20}
           value={re_pw}
-          onChange={handleChange}
+          onChangeText={(val) => this.setState({ re_pw: val })}
+        />
+        <TextInput
+          name="email"
+          style={{
+            width: 330,
+            height: 50,
+            borderColor: "#DBDFE5",
+            backgroundColor: "white",
+            borderWidth: 1,
+            marginBottom: 10,
+            fontSize: 18,
+          }}
+          placeholder="이메일"
+          textAlign="center"
+          maxLength={50}
+          value={email}
+          onChangeText={(val) => this.setState({ email: val })}
         />
         <TextInput
           name="nick"
@@ -104,7 +136,7 @@ export default class Signin extends Component {
           }}
           placeholder="닉네임"
           textAlign="center"
-          maxLength={5}
+          maxLength={10}
           value={nick}
           onChangeText={(val) => this.setState({ nick: val })}
         />

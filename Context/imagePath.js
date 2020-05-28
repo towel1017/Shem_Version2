@@ -1,0 +1,9 @@
+export { default as X } from "../img/X.png";
+export { default as Baskinrobbins } from "../img/baskinrobbins.png";
+export { default as Bita500 } from "../img/bita500.png";
+export { default as Chicken } from "../img/chicken.png";
+export { default as CoffeeCup } from "../img/coffee-cup.png";
+export { default as condisyn } from "../img/condisyn.png";
+export { default as Star } from "../img/star.png";
+export { default as Meat } from "../img/meat.png";
+export { default as Hand } from "../img/hand.png";
