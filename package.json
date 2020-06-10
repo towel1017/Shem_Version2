@@ -20,6 +20,7 @@
     "react-native-datepicker": "1.7.2",
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-ionicons": "4.6.5",
     "react-native-navigation": "6.4.0",
     "react-native-reanimated": "^1.7.0",
     "react-native-router-flux": "^4.2.0",

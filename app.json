@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "EOIKU V2",
-    "slug": "a_ecuProject",
+    "name": "SHEM V2",
+    "slug": "Shem_Remake",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": ["ios", "android", "web"],
